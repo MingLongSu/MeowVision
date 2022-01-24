@@ -3,5 +3,9 @@
     height: 100vh;
     background: var(--dark-theme-colour-2);
 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+
     overflow: hidden;
 }

@@ -7,9 +7,17 @@
     align-items: center;
 }
 
+/**
+   Web Logo Start
+**/
+
 .Topbar__web-logo-container { 
-    width: 700px;
+    width: 600px;
     height: 100%;
+
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
     
     background-color: var(--dark-theme-colour-1);
     border-radius: 0 0 40px 0;
@@ -17,6 +25,92 @@
 
     overflow: hidden;
 }
+
+.web-logo-container__web-logo { 
+    margin-left: 30px;
+
+    width: 125px; 
+    height: 200px;
+
+    background-image: url(../../assets/WebLogo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.web-logo-container__web-logo-title-container { 
+    margin-left: 10px;
+
+    width: 375px; 
+    height: 100%;
+
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.web-logo-title-container__title { 
+    user-select: none;
+
+    margin: auto;
+    margin-bottom: 0;
+
+    font-size: 3.70rem;
+
+    color: var(--dark-theme-colour-5);
+
+    transition: 500ms ease-in-out;
+}
+
+.web-logo-title-container__title_active { 
+    user-select: none;
+
+    margin: auto;
+    margin-bottom: 0;
+
+    font-size: 3.9rem;
+
+    color: var(--dark-theme-colour-5);
+
+    transition: 500ms ease-in-out;
+}
+
+.web-logo-title-container__underline-container { 
+    margin: auto;
+    margin-top: 0;
+
+    width: 107.5%; 
+    height: 5px;
+
+    transform: translate(-5px);
+}
+
+.underline-container__underline { 
+    width: 0;
+    height: 100%;
+
+    background-color: var(--dark-theme-colour-5);
+
+    transition: 500ms ease-in-out;
+}
+
+.underline-container__underline_active { 
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--dark-theme-colour-5);
+
+    transition: 500ms ease-in-out;
+}
+
+/**
+    Web Logo End
+**/
+
+
+/**
+    Meow Apps Logo Start
+**/
 
 .Topbar__meow-apps-logo-container { 
     margin-left: auto;
@@ -46,7 +140,7 @@
     border-radius: 50%;
     border: 5px solid var(--purple);
 
-    transition: 200ms;
+    transition: 600ms ease-in-out;
 }
 
 .meow-apps-logo-container__meow-apps-logo:hover { 
@@ -55,3 +149,7 @@
 
     transform: rotate(-720deg);
 }
+
+/**
+    Meow Apps Logo Start
+**/
