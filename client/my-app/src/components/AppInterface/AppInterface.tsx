@@ -1,9 +1,11 @@
 import React from 'react';
 
-const AppInterface = () => {
-  return (
-    <div>
+import './AppInterface.css';
 
+const AppInterface: React.FC = () => {
+  return (
+    <div className="AppInterface">
+        
     </div>
   );
 };
