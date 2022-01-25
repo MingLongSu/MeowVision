@@ -6,10 +6,12 @@ import Drawer from './Drawer/Drawer';
 import UploadPanel from './UploadPanel/UploadPanel';
 
 const AppInterface: React.FC = () => {
+  //const [clickAnalyze, setClickAnalyze] = useState<boolean>(false);
+
   return (
     <div className="AppInterface">
         <div className="AppInterface__analysis">
-          <AnalyzeButton> </AnalyzeButton>
+          <AnalyzeButton > </AnalyzeButton>
           <UploadPanel> </UploadPanel>
         </div>
         <div className="AppInterface__drawer-container">
