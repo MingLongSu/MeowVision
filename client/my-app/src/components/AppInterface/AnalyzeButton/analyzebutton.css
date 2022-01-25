@@ -1,0 +1,23 @@
+.AnalyzeButton { 
+    width: 100%;
+    height: 65px;
+
+    background: pink;
+}
+
+.AnalyzeButton__analyze-button-container {
+    width: 950px;
+    height: 100%;
+
+    background-color: green;
+}
+
+.analyze-button-container__button { 
+    margin-left: auto; 
+    margin-top: auto;
+    
+    width: 275px;
+    height: 60px;
+
+    background-color: cyan;
+}
