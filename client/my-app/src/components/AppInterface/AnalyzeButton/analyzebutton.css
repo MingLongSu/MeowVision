@@ -1,23 +1,59 @@
 .AnalyzeButton { 
     width: 100%;
     height: 65px;
-
-    background: pink;
 }
 
 .AnalyzeButton__analyze-button-container {
     width: 950px;
     height: 100%;
-
-    background-color: green;
 }
 
-.analyze-button-container__button { 
+.analyze-button-container__analyze-button { 
+    cursor: pointer;
+
     margin-left: auto; 
     margin-top: auto;
     
     width: 275px;
     height: 60px;
 
-    background-color: cyan;
+    font-size: 2rem;
+    color: var(--dark-theme-colour-5);
+    background-color: var(--dark-theme-colour-1);
+    border-radius: 17.5px 17.5px 0 0;
+
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(12.5px);
+
+    transition: 250ms ease-in-out;
+}
+
+.analyze-button-container__analyze-button:hover { 
+    color: var(--purple);
+
+    transform: translateY(0);
+}
+
+/**
+    SVG 
+**/
+
+.analyze-svg-container__analyze-svg {
+    margin: auto;
+    margin-right: 20px;
+}
+
+/**
+    SVG
+**/
+
+.analyze-button__analyze-title { 
+    user-select: none;
+
+    margin: auto;
+    margin-left: 0;
 }
