@@ -21,6 +21,7 @@
     color: var(--dark-theme-colour-5);
     background-color: var(--dark-theme-colour-1);
     border-radius: 17.5px 17.5px 0 0;
+    border-style: none;
 
     display: flex; 
     flex-direction: row;
@@ -36,6 +37,12 @@
     color: var(--purple);
 
     transform: translateY(0);
+}
+
+.analyze-button-container__analyze-button:active { 
+    transform: translateY(20px);
+
+    color: var(--green);
 }
 
 /**
