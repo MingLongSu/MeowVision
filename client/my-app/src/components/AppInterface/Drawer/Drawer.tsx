@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Drawer = () => {
+import './drawer.css';
+
+const Drawer: React.FC = () => {
   return (
-    <div>
+    <div className='Drawer'>
         
     </div>
   );
