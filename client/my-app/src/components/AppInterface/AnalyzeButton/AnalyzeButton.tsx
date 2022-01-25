@@ -2,11 +2,15 @@ import React from 'react';
 
 import './analyzebutton.css';
 
-const AnalyzeButton: React.FC = () => {
-    
+interface DrawerState { 
+    openDrawer: boolean;
+} 
+
+const AnalyzeButton: React.FC<DrawerState> = ({ openDrawer }) => {
+
 
     return (
-        <div className="AnalyzeButton">
+        <div className={ "AnalyzeButton" + (openDrawer ? " active" : "") }>
             <div className="AnalyzeButton__analyze-button-container">
                 <button className="analyze-button-container__analyze-button">
                     <i className="fas fa-eye analyze-svg-container__analyze-svg"></i>
