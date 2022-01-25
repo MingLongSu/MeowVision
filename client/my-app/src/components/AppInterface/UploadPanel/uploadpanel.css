@@ -4,13 +4,155 @@
     width: 100%;
     height: 100%;
 
-    background-color: blue;
+    background-color: var(--dark-theme-colour-2);
     box-shadow: 0 0 4px 4px var(--dark-theme-colour-4);
     border-radius: 10px 0 10px 10px;
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     transition: 250ms ease-in-out;
+
+    overflow: hidden;
 }
 
 .UploadPanel.active { 
     transform: translateX(225px);
 }
+
+/**
+    Image Container Start
+**/
+
+.UploadPanel__image-container { 
+    width: 675px;
+    height: 100%;
+
+    background: url(https://honeysanime.com/wp-content/uploads/2016/05/Chi%E2%80%99s-Sweet-Home-Wallpaper.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border-right: 5px solid var(--purple);
+}
+
+/**
+    Image Container End
+**/
+
+/**
+    Upload Start
+**/
+
+.UploadPanel__upload-and-results-container { 
+    width: 275px; 
+    height: 100%;
+
+
+}
+
+.upload-and-results-container__upload-container { 
+    width: 100%;
+    height: 200px;
+
+    background-color: var(--dark-theme-colour-2);
+
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.upload-container__upload-button-hidden { 
+    display: none;
+}
+
+.upload-container__upload-button-visible { 
+    user-select: none;
+
+    cursor: pointer;
+
+    width: 175px;
+    height: 50px;
+
+    font-size: 1.1rem;
+
+    color: var(--dark-theme-colour-5);
+    background-color: var(--dark-theme-colour-1);
+    border-radius: 5px;
+    border-style: none;
+
+    transition: 250ms ease-in-out;
+}
+
+.upload-container__upload-button-visible:hover { 
+    width: 180px;
+    height: 55px;
+
+    font-size: 1.17rem;
+
+    color: var(--purple);
+}
+
+.upload-container__separator { 
+    user-select: none;
+
+    font-size: 1.5rem;
+
+    color: var(--dark-theme-colour-5);      
+}
+
+.upload-container__upload-url { 
+    padding-left: 2px;
+    
+    width: 175px;
+    height: 50px;
+
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--dark-theme-colour-1);
+    color: var(--dark-theme-colour-5);
+    text-align: center;
+
+    transition: 250ms ease-in-out;
+}
+
+.upload-container__upload-url:hover { 
+    width: 180px;
+    height: 55px;
+
+    font-size: 1.17rem;
+
+    color: var(--purple);
+}
+
+.upload-container__upload-url::placeholder { 
+    color: var(--dark-theme-colour-5);
+
+    transition: 250ms ease-in-out;
+}
+
+.upload-container__upload-url:hover::placeholder { 
+    color: var(--purple);
+}
+
+/**
+    Upload End
+**/
+
+/**
+    Results Start
+**/
+
+.upload-and-results-container__results-container {
+    width: 100%; 
+    height: calc(100% - 200px);
+
+    background-color: white;
+}
+
+/**
+     Results End
+**/
