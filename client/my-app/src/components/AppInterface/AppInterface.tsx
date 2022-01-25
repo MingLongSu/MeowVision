@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AnalyzeButton from './AnalyzeButton/AnalyzeButton';
 
 import './AppInterface.css';
+
 import Drawer from './Drawer/Drawer';
 import UploadPanel from './UploadPanel/UploadPanel';
 
