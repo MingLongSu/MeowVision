@@ -7,8 +7,6 @@
     display: flex; 
     flex-direction: row;
     align-items: center;
-
-    background-color: yellow;
 }
 
 /** 
@@ -17,11 +15,13 @@
 
 .AppInterface__analysis { 
     width: 950px; 
-    height: 635px;
+    height: 100%;
 
     display: flex; 
     flex-direction: column; 
     align-items: center;
+
+    transition: 250ms ease-in-out;
 }
 
 /** 
@@ -34,7 +34,7 @@
 
 .AppInterface__drawer-container { 
     width: 450px;
-    height: 77.5%;
+    height: 88%;
 
     transform: translateY(30px);
     

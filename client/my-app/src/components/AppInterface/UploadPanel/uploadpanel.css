@@ -5,4 +5,12 @@
     height: 100%;
 
     background-color: blue;
+    box-shadow: 0 0 4px 4px var(--dark-theme-colour-4);
+    border-radius: 10px 0 10px 10px;
+
+    transition: 250ms ease-in-out;
+}
+
+.UploadPanel.active { 
+    transform: translateX(225px);
 }

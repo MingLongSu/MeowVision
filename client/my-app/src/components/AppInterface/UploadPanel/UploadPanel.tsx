@@ -2,9 +2,13 @@ import React from 'react';
 
 import './uploadpanel.css';
 
-const UploadPanel: React.FC = () => {
+interface DrawerState { 
+  openDrawer: boolean;
+}
+
+const UploadPanel: React.FC<DrawerState> = ({ openDrawer }) => {
   return (
-    <div className="UploadPanel">
+    <div className={ "UploadPanel" + (openDrawer ? " active" : "") }>
       
     </div>
   );
