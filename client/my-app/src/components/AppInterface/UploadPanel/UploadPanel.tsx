@@ -11,7 +11,7 @@ interface UploadPanelState {
 const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImageURL }) => {
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const [results, setResults] = useState<Promise<{className: string; probability: number; }[]>  | undefined>(undefined);
+  const [results, setResults] = useState<{ className: string; probability: number; }[] | undefined>(undefined);
 
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
 
@@ -19,9 +19,9 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
     uploadFileRef.current?.click();
   }
 
-  const analyzeImage = () => { 
+  const analyzeImage = async () => { 
     if (imageURL && imageRef.current) { 
-      const results = model?.classify(imageRef.current).then(arrList => arrList);
+      const results = await model?.classify(imageRef.current).then((arr) => { return arr });
       setResults(results);
     }
   }
@@ -40,6 +40,8 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
     loadModel();
   }, []);
 
+  console.log(results);
+
   const uploadImage = (e : React.SyntheticEvent) => { 
     const file = (e.target as HTMLInputElement).files; // gets the file uploaded
 
@@ -51,10 +53,6 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
       setImageURL(null);
     }
   }
-
-  results?.then(arr => { 
-    console.log(arr);
-  });
 
   return (
     <div className="AppInterface__analysis">
@@ -81,32 +79,32 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
           </div>
           <div className="upload-and-results-container__results-container">
           { results &&
-            <div className="results-container__result" id="one">
-              <span className="result__title">
-                # 1 ( { } )
+            <div className="results-container__result">
+              <span className="result__title" id="one">
+                # 1 ({ Math.round(results[0].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
-                
+                { results[0].className }
               </span>
             </div>
           }
           { results &&
-            <div className="results-container__result" id="one">
-              <span className="result__title">
-                # 2
+            <div className="results-container__result">
+              <span className="result__title" id="two">
+                # 2 ({ Math.round(results[1].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
-                
+                { results[1].className }
               </span>
             </div>
           }
           { results &&
-            <div className="results-container__result" id="one">
-              <span className="result__title">
-                # 3
+            <div className="results-container__result">
+              <span className="result__title" id="three">
+                # 3 ({ Math.round(results[2].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
-                
+                { results[2].className  }
               </span>
             </div>
           }
