@@ -54,6 +54,15 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
     }
   }
 
+  const pasteImageURL = (e : React.SyntheticEvent) => { 
+    const imageURL = (e.target as HTMLInputElement).value; // gets the image through provided url
+
+    if (imageURL) { 
+      setImageURL(imageURL);
+  
+    }
+  }
+
   return (
     <div className="AppInterface__analysis">
       <div className={ "AnalyzeButton" + (openDrawer ? " active" : "") }>
@@ -75,7 +84,7 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
             <input ref={ uploadFileRef } onChange={ (e: React.SyntheticEvent) => uploadImage(e) } type="file" className="upload-container__upload-button-hidden"></input>
             <button onClick={ interactUploadButton } className="upload-container__upload-button-visible"> Click to upload!</button>
             <span className="upload-container__separator"> OR </span>
-            <input type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
+            <input onChange={ (e: React.SyntheticEvent) => pasteImageURL(e) } type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
           </div>
           <div className="upload-and-results-container__results-container">
           { results &&
