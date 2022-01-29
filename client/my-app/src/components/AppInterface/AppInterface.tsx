@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import './AppInterface.css';
 
-import AnalyzeButton from './AnalyzeButton/AnalyzeButton';
 import Drawer from './Drawer/Drawer';
 import UploadPanel from './UploadPanel/UploadPanel';
 
@@ -13,10 +12,7 @@ const AppInterface: React.FC = () => {
 
   return (
     <div className="AppInterface">
-        <div className="AppInterface__analysis">
-          <AnalyzeButton openDrawer={ openDrawer }> </AnalyzeButton>
-          <UploadPanel openDrawer={ openDrawer } imageURL={ imageURL } setImageURL={ setImageURL } > </UploadPanel>
-        </div>
+        <UploadPanel openDrawer={ openDrawer } imageURL={ imageURL } setImageURL={ setImageURL } > </UploadPanel>
         <div className="AppInterface__drawer-container">
           <Drawer openDrawer={ openDrawer } setOpenDrawer={ setOpenDrawer }> </Drawer>
         </div>
