@@ -1,25 +1,39 @@
 import React, { useRef } from 'react';
 
 import './uploadpanel.css';
-interface DrawerState { 
+interface UploadPanelState { 
   openDrawer: boolean;
+  imageURL: string | null;
+  setImageURL: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const UploadPanel: React.FC<DrawerState> = ({ openDrawer }) => {
+const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImageURL }) => {
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
 
   const interactUploadButton = () => { 
     uploadFileRef.current?.click();
   }
 
+  const uploadImage = (e : React.SyntheticEvent) => { 
+    const file = (e.target as HTMLInputElement).files; // gets the file uploaded
+
+    if (file) { 
+      const imageURL = URL.createObjectURL(file[0]);
+      setImageURL(imageURL);
+    }
+    else { 
+      setImageURL(null);
+    }
+  }
+
   return (
     <div className={ "UploadPanel" + (openDrawer ? " active" : "") }>
       <div className="UploadPanel__image-container">
-
+        <img className="image-container__image" src={ imageURL ? imageURL : "https://honeysanime.com/wp-content/uploads/2016/05/Chi%E2%80%99s-Sweet-Home-Wallpaper.jpg"} ></img>
       </div>
       <div className="UploadPanel__upload-and-results-container">
         <div className="upload-and-results-container__upload-container">
-          <input ref={ uploadFileRef } type="file" className="upload-container__upload-button-hidden"></input>
+          <input ref={ uploadFileRef } onChange={ (e: React.SyntheticEvent) => uploadImage(e) } type="file" className="upload-container__upload-button-hidden"></input>
           <button onClick={ interactUploadButton } className="upload-container__upload-button-visible"> Click to upload!</button>
           <span className="upload-container__separator"> OR </span>
           <input type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
