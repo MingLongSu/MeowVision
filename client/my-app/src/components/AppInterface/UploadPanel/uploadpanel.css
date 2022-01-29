@@ -194,7 +194,21 @@
     font-size: 1.3rem;
     font-weight: bold;
     background-color: var(--dark-theme-colour-1);
-    border-bottom: 2px solid var(--dark-theme-colour-5);
+}
+
+#one { 
+    color: var(--green);
+    border-bottom: 2px solid var(--green);
+}
+
+#two { 
+    color: var(--yellow);
+    border-bottom: 2px solid var(--yellow);
+}
+
+#three { 
+    color: var(--red);
+    border-bottom: 2px solid var(--red);
 }
 
 .result__info { 
