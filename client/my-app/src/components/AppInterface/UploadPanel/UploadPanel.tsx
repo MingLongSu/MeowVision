@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import * as mobilenet from "@tensorflow-models/mobilenet";
 
 import './uploadpanel.css';
 interface UploadPanelState { 
@@ -8,26 +9,41 @@ interface UploadPanelState {
 }
 
 const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImageURL }) => {
-  const uploadFileRef = useRef<HTMLInputElement | null>(null);
+  const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const [results, setResults] = useState<Promise<{className: string; probability: number; }[]>  | undefined>(undefined);
+
+  const uploadFileRef = useRef<HTMLInputElement | null>(null);
 
   const interactUploadButton = () => { 
     uploadFileRef.current?.click();
   }
 
   const analyzeImage = () => { 
-    if (imageURL) { 
-      console.log("Analyzing"); // TEMP
-    }
-    else { 
-      console.log("No image to analzye"); // TEMP
+    if (imageURL && imageRef.current) { 
+      const results = model?.classify(imageRef.current).then(arrList => arrList);
+      setResults(results);
     }
   }
+
+  const loadModel = async () => { 
+    try { 
+      const model = await mobilenet.load();
+      setModel(model);
+    }
+    catch (error) { 
+      console.log(error);
+    }
+  }
+
+  useEffect(() => { 
+    loadModel();
+  }, []);
 
   const uploadImage = (e : React.SyntheticEvent) => { 
     const file = (e.target as HTMLInputElement).files; // gets the file uploaded
 
-    if (file) { 
+    if (file && file.length > 0) { 
       const imageURL = URL.createObjectURL(file[0]);
       setImageURL(imageURL);
     }
@@ -35,6 +51,10 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
       setImageURL(null);
     }
   }
+
+  results?.then(arr => { 
+    console.log(arr);
+  });
 
   return (
     <div className="AppInterface__analysis">
@@ -60,34 +80,36 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
             <input type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
           </div>
           <div className="upload-and-results-container__results-container">
+          { results &&
             <div className="results-container__result" id="one">
-              { 
-                // Samples for guess cards
-              }
               <span className="result__title">
-                # 1 (Most Accurate)
+                # 1 ( { } )
               </span>
               <span className="result__info">
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                
               </span>
             </div>
+          }
+          { results &&
             <div className="results-container__result" id="one">
               <span className="result__title">
                 # 2
               </span>
               <span className="result__info">
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                
               </span>
             </div>
+          }
+          { results &&
             <div className="results-container__result" id="one">
               <span className="result__title">
                 # 3
               </span>
               <span className="result__info">
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                
               </span>
             </div>
-            
+          }
           </div>
         </div>
       </div>

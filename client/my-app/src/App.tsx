@@ -1,5 +1,4 @@
 import React from 'react';
-//import * as mobilenet from "@tensorflow-models/mobilenet";
 
 import './app.css';
 
@@ -8,8 +7,6 @@ import Topbar from './components/Topbar/Topbar';
 
 
 const App: React.FC = () => {
-
-
   return (
     <div className="App">
       <Topbar> </Topbar>
