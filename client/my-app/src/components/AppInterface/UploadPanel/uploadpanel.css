@@ -29,12 +29,18 @@
     width: 675px;
     height: 100%;
 
-    background: url(https://honeysanime.com/wp-content/uploads/2016/05/Chi%E2%80%99s-Sweet-Home-Wallpaper.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    display: flex;
 
+    background-color: var(--purple);
     border-right: 5px solid var(--purple);
+}
+
+.image-container__image { 
+    max-width: 100%;
+    max-height: 100%;
+
+    align-self: center;
+    justify-self: center;
 }
 
 /**
