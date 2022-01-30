@@ -6,12 +6,14 @@ interface UploadPanelState {
   openDrawer: boolean;
   imageURL: string | null;
   setImageURL: React.Dispatch<React.SetStateAction<string | null>>;
+  urls: string[];
+  setURLs: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImageURL }) => {
+const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImageURL, urls, setURLs }) => {
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const [results, setResults] = useState<{ className: string; probability: number; }[] | undefined>(undefined);
+  const [results, setResults] = useState<{ className: string; probability: number; }[] | undefined>();
 
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
 
@@ -40,7 +42,11 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
     loadModel();
   }, []);
 
-  console.log(results);
+  useEffect(() => { 
+    if (imageURL) { 
+      setURLs([imageURL, ...urls]);
+    }
+  }, [imageURL]);
 
   const uploadImage = (e : React.SyntheticEvent) => { 
     const file = (e.target as HTMLInputElement).files; // gets the file uploaded
@@ -51,6 +57,7 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
     }
     else { 
       setImageURL(null);
+      console.log("image error");
     }
   }
 
@@ -59,7 +66,9 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
 
     if (imageURL) { 
       setImageURL(imageURL);
-  
+    }
+    else { 
+      setImageURL(null);
     }
   }
 
@@ -81,16 +90,16 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
         </div>
         <div className="UploadPanel__upload-and-results-container">
           <div className="upload-and-results-container__upload-container">
-            <input ref={ uploadFileRef } onChange={ (e: React.SyntheticEvent) => uploadImage(e) } type="file" className="upload-container__upload-button-hidden"></input>
+            <input ref={ uploadFileRef } onChange={ uploadImage } type="file" className="upload-container__upload-button-hidden"></input>
             <button onClick={ interactUploadButton } className="upload-container__upload-button-visible"> Click to upload!</button>
             <span className="upload-container__separator"> OR </span>
-            <input onChange={ (e: React.SyntheticEvent) => pasteImageURL(e) } type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
+            <input onChange={ pasteImageURL } type="text" placeholder="Paste image url!" className="upload-container__upload-url"></input>
           </div>
           <div className="upload-and-results-container__results-container">
           { results &&
             <div className="results-container__result">
               <span className="result__title" id="one">
-                # 1 ({ Math.round(results[0].probability * 10000) / 100 }%)
+                # 1 (Confidence: { Math.round(results[0].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
                 { results[0].className }
@@ -100,7 +109,7 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
           { results &&
             <div className="results-container__result">
               <span className="result__title" id="two">
-                # 2 ({ Math.round(results[1].probability * 10000) / 100 }%)
+                # 2 (Confidence: { Math.round(results[1].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
                 { results[1].className }
@@ -110,7 +119,7 @@ const UploadPanel: React.FC<UploadPanelState> = ({ openDrawer, imageURL, setImag
           { results &&
             <div className="results-container__result">
               <span className="result__title" id="three">
-                # 3 ({ Math.round(results[2].probability * 10000) / 100 }%)
+                # 3 (Confidence: { Math.round(results[2].probability * 10000) / 100 }%)
               </span>
               <span className="result__info">
                 { results[2].className  }
