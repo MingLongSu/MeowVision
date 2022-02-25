@@ -16,7 +16,7 @@ itself as a solution to assisting those in need of identifying objects in partic
 - Responsive and lively user interface design
 
 ## 🖼️ Images
-![Alt Text](https://giphy.com/gifs/Ue5asdpoh9DyiW6JEb)
+<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
 
 ## 🛠️ Future Plans
 - Redesign the "drawer" feature to store images in a more aspect ratio friendly manner
