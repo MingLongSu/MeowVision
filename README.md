@@ -16,7 +16,10 @@ itself as a solution to assisting those in need of identifying objects in partic
 - Responsive and lively user interface design
 
 ## 🖼️ Images
-![MeowVision.gif]()
+![Snippet #1](https://user-images.githubusercontent.com/88013020/155814837-956ae860-ab9b-4bd6-94d5-f6839b5437e4.JPG)
+![Snippet #2](https://user-images.githubusercontent.com/88013020/155814844-585c17be-0ad2-44ec-b0fd-9e602eec50ee.JPG)
+![Snippet #3](https://user-images.githubusercontent.com/88013020/155814846-cf20c408-e0e0-46f7-b1af-a3dfed6f1bea.JPG)
+
 
 ## 🛠️ Future Plans
 - Redesign the "drawer" feature to store images in a more aspect ratio friendly manner
