@@ -16,7 +16,7 @@ itself as a solution to assisting those in need of identifying objects in partic
 - Responsive and lively user interface design
 
 ## 🖼️ Images
-- **To be added
+<iframe src="https://giphy.com/embed/Ue5asdpoh9DyiW6JEb" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Ue5asdpoh9DyiW6JEb">via GIPHY</a></p>
 
 ## 🛠️ Future Plans
 - Redesign the "drawer" feature to store images in a more aspect ratio friendly manner
